@@ -60,6 +60,21 @@ form button:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+#try-again {
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(0, 102, 153, 0.6);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#try-again:hover {
+    background-color: rgba(0, 102, 153, 0.8);
+}
+
 #lyrics-input {
     width: 100%;
     padding: 10px;
@@ -86,6 +101,22 @@ form button:hover {
     text-align: center;
     background-color: rgba(0, 102, 153, 0.1);
     border: 0px;
+}
+
+#round-details {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#complete {
+    display: none;
+    color: #006699;
+}
+
+#failure {
+    display: none;
 }
 
 

@@ -10,8 +10,16 @@
     <header>
         <h1>Lyrics Quiz</h1>
         <a href="/">Home</a>
+        <a id="revealAnswers">Reveal Answers</a>
     </header>
     <main>
+        <div id="round-details">
+            <div id="timer">00:00</div>
+            <div id="complete">Mission Complete!</div>
+            <div id="failure">Mission Failed<br><br>
+                <button id="try-again">Try Again?</button>
+            </div>
+        </div>
         <input type="text" id="lyrics-input" placeholder="Type the missing lyric">
         <table id="lyrics-table">
             <tr>

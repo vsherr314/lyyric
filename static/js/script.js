@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var lyricsInput = document.getElementById('lyrics-input');
     var lyricsTable = document.getElementById('lyrics-table');
     var lyricCells = document.querySelectorAll('#lyrics-table td');
+    var completeDisplay = document.getElementById('complete');
+    var failDisplay = document.getElementById('failure');
+    var timerDisplay = document.getElementById('timer');
+    var revealAnswersLink = document.getElementById('revealAnswers');
+    var tryAgainButton = document.getElementById('try-again');
+
+    var startTime;
+    var timerInterval;
+
+    startTimer();
 
     // Add input event listener to the lyrics input
     lyricsInput.addEventListener('input', function () {
@@ -15,6 +25,60 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault(); // Prevent form submission
             checkAnswer();
         }
+    });
+
+    // Add click event listener to the "Reveal Answers" link
+    revealAnswersLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the link from navigating
+        revealAnswers();
+        timerDisplay.style.display = 'none';
+        failDisplay.style.display = 'block';
+    });
+
+    // Function to reveal all answers
+    function revealAnswers() {
+        for (var i = 0; i < lyricCells.length; i++) {
+            var wordCell = lyricCells[i];
+            if (!wordCell.classList.contains('active')) {
+                wordCell.classList.add('active');
+                wordCell.textContent = wordCell.dataset.word.toLowerCase();
+            }
+        }
+    }
+
+    // Function to start the timer
+    function startTimer() {
+        startTime = new Date().getTime();
+        timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+    }
+
+    // Function to stop the timer
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    // Function to update the timer display
+    function updateTimer() {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - startTime;
+        var seconds = Math.floor(elapsedTime / 1000);
+        timerDisplay.textContent = formatTime(seconds);
+    }
+
+    // Function to format time as MM:SS
+    function formatTime(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        return (
+            (minutes < 10 ? '0' : '') + minutes + ':' +
+            (seconds < 10 ? '0' : '') + seconds
+        );
+    }
+
+    // Add click event listener to the "Try Again?" button
+    tryAgainButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        location.reload();
     });
 
     // Function to check the user's input against the correct lyrics
@@ -47,11 +111,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to display "Mission Complete" message
     function displayMissionComplete() {
-        var missionCompleteMessage = document.createElement('div');
-        missionCompleteMessage.textContent = 'Mission Complete';
-        missionCompleteMessage.style.fontWeight = 'bold';
-        missionCompleteMessage.style.marginTop = '20px';
-        missionCompleteMessage.style.marginBottom = '20px';
-        lyricsTable.parentElement.insertBefore(missionCompleteMessage, lyricsTable);
+        stopTimer();
+        var elapsedTime = timerDisplay.textContent;
+        completeDisplay.textContent = 'Mission Complete! Time: ' + elapsedTime;
+        completeDisplay.style.display = 'block';
+        timerDisplay.style.display = 'none';
+        revealAnswersLink.style.display = 'none';
     }
 });
