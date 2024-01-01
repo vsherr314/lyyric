@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #00142a, #006699, #6b006b);
+}
+
+header {
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    justify-content: space-between;
+}
+
+header a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s;
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+form {
+    margin: 200px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+}
+
+form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#lyrics-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#lyrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#lyrics-table td {
+    border: 1px solid #ddd;
+    font-size: 14px;
+    padding: 8px;
+    text-align: left;
+    min-width: 40px;
+    height: 30px;
+}
+
+#lyrics-table td.active {
+    text-align: center;
+    background-color: rgba(0, 102, 153, 0.1);
+    border: 0px;
+}
+
+
+
+
+/*media queries*/
+@media only screen and (max-width: 600px) {
+    #lyrics-table td {
+        min-width: 10px;
+    }
+}
+
+
